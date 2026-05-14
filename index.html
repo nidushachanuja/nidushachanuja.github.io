@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>05.16 | The Story</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@200;300;600&display=swap');
+
+        :root {
+            --slate: #0a0c10;
+            --gold-haze: #c5a367;
+            --silk: #f4f4f4;
+        }
+
+        body {
+            background-color: var(--slate);
+            color: var(--silk);
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .serif { font-family: 'Instrument Serif', serif; }
+
+        .grain::after {
+            content: "";
+            position: fixed;
+            top: -100%; left: -100%; width: 300%; height: 300%;
+            background-image: url('https://upload.wikimedia.org/wikipedia/commons/7/76/Noise_6.png');
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 50;
+            animation: grain 8s steps(10) infinite;
+        }
+
+        @keyframes grain {
+            0%, 100% { transform:translate(0, 0) }
+            10% { transform:translate(-5%, -10%) }
+            20% { transform:translate(-15%, 5%) }
+            30% { transform:translate(7%, -25%) }
+            40% { transform:translate(-5%, 25%) }
+            50% { transform:translate(-15%, 10%) }
+        }
+
+        .text-gold {
+            background: linear-gradient(to right, #ffffff, var(--gold-haze));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .image-frame {
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(197, 163, 103, 0.2);
+            background: #111;
+        }
+
+        /* Swiper Responsiveness */
+        .swiper { width: 100%; padding-top: 30px; padding-bottom: 60px; }
+        .swiper-slide {
+            background-position: center;
+            background-size: cover;
+            width: 260px;
+            height: 360px;
+            filter: grayscale(80%);
+            transition: all 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 1px solid rgba(197, 163, 103, 0.1);
+        }
+        @media (min-width: 768px) { 
+            .swiper-slide { width: 350px; height: 480px; } 
+            .swiper { padding-top: 50px; padding-bottom: 80px; }
+        }
+        
+        .swiper-slide-active {
+            filter: grayscale(0%);
+            border: 1px solid var(--gold-haze);
+            box-shadow: 0 0 40px rgba(197, 163, 103, 0.2);
+            transform: scale(1.05);
+        }
+
+        #main-content { visibility: hidden; height: 0; opacity: 0; transition: opacity 2s ease; }
+        #main-content.visible { visibility: visible; height: auto; opacity: 1; }
+
+        @media (max-width: 640px) {
+            .hero-title { font-size: 5rem !important; }
+        }
+    </style>
+</head>
+<body class="grain">
+
+    <div id="lock-screen" class="min-h-screen flex flex-col items-center justify-center p-6 text-center z-20 relative">
+        <div data-aos="zoom-out" data-aos-duration="2000">
+            <span class="text-[10px] uppercase tracking-[0.8em] text-gray-500 mb-6 block">The Wait is Over</span>
+            <div id="countdown" class="serif italic text-6xl md:text-9xl text-gold">00:00:00</div>
+            <p class="mt-8 text-gray-400 font-light tracking-widest text-xs">A bond built since Grade 4.</p>
+        </div>
+    </div>
+
+    <div id="main-content">
+        <!-- Hero Section -->
+        <section class="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden text-center">
+            <h1 class="serif hero-title text-7xl md:text-[12rem] italic leading-tight mb-4" data-aos="fade-up" data-aos-duration="2500">
+                Happy <span class="text-gold">Birthday.</span>
+            </h1>
+            <p class="text-gray-500 tracking-[0.3em] text-[10px] md:text-sm uppercase" data-aos="fade-up" data-aos-delay="1000">
+                To my best friend Senodyaa 😙💕
+            </p>
+            <div class="absolute text-[30vw] md:text-[20vw] font-bold text-white/5 select-none -z-10">2026</div>
+        </section>
+
+        <!-- Story Sections -->
+        <section class="py-12 md:py-24">
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 px-6 items-center mb-32">
+                <div class="image-frame aspect-[4/5]" data-aos="fade-up">
+                    <img src="pics/1.jpg" class="w-full h-full object-cover" alt="Grade 4">
+                </div>
+                <div data-aos="fade-up" class="text-center md:text-left">
+                    <span class="serif italic text-3xl md:text-4xl text-gold block mb-4">Grade 4.</span>
+                    <h2 class="text-xl md:text-2xl font-light mb-6">Where it all began.</h2>
+                    <p class="text-gray-400 leading-relaxed font-light text-sm md:text-base">
+                        Who would have thought that two kids in the same classroom would end up here? 
+                        You've been my anchor since the very beginning.
+                    </p>
+                </div>
+            </div>
+
+            <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-20 px-6 items-center mb-32">
+                <div class="md:order-2 image-frame aspect-[4/5]" data-aos="fade-up">
+                    <img src="pics/2.jpg" class="w-full h-full object-cover" alt="Now">
+                </div>
+                <div class="md:order-1 text-center md:text-right" data-aos="fade-up">
+                    <span class="serif italic text-3xl md:text-4xl text-gold block mb-4">Today.</span>
+                    <h2 class="text-xl md:text-2xl font-light mb-6">The world through my lens.</h2>
+                    <p class="text-gray-400 leading-relaxed font-light text-sm md:text-base">
+                        Even after all these years, my lens always finds its way back to you. 
+                        You aren't just a subject; you're the whole story.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Infinite Film Reel -->
+        <section class="py-20 overflow-hidden" data-aos="fade-up">
+            <div class="text-center mb-10">
+                <span class="serif italic text-4xl text-gold">This is my favorite film roll</span>
+                <p class="text-gray-500 text-[10px] tracking-[0.5em] uppercase mt-4">Infinite Memories</p>
+            </div>
+            <div class="swiper mySwiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide image-frame"><img src="pics/3.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/4.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/5.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/6.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/7.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/8.webp" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/9.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/10.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/11.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/12.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/13.jpg" class="w-full h-full object-cover"></div>
+                    <div class="swiper-slide image-frame"><img src="pics/14.jpg" class="w-full h-full object-cover"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Updated Final Birthday Message -->
+        <section class="max-w-4xl mx-auto px-6 py-24 md:py-40 text-center">
+            <div class="p-8 md:p-16 border border-white/5 bg-white/[0.02] backdrop-blur-xl rounded-3xl" data-aos="zoom-in">
+                <h3 class="serif text-3xl md:text-4xl italic text-gold mb-8 leading-snug">
+                    Happy Birthday to my best friend since Grade 4. 🎂💕
+                </h3>
+                <div class="text-gray-300 font-light leading-relaxed text-left md:text-center space-y-6 text-sm md:text-lg">
+                    <p>
+                        It honestly feels so special knowing we’ve been together through so many years, memories, and moments since we were just little kids. From Grade 4 until now, you’ve always been one of the most important people in my life.
+                    </p>
+                    <p>
+                        We grew up together, shared laughs, memories, and so many unforgettable moments that I’ll always keep close to my heart. You are truly one of the kindest, sweetest, and most beautiful souls I’ve ever met, and I’m really grateful to have you in my life.
+                    </p>
+                    <p>
+                        On your special day, I just want to wish you endless happiness, success, love, and peace in life. I hope your smile never fades and that every dream you have slowly becomes real. Mmmwwwhhhh 😙💕
+                    </p>
+                </div>
+                <div class="w-12 h-[1px] bg-gold-haze mx-auto my-8"></div>
+                <p class="uppercase tracking-widest text-[10px] text-gray-500 font-bold">Nidusha Chanuja</p>
+            </div>
+        </section>
+
+        <footer class="py-10 text-center opacity-30">
+            <p class="text-[8px] md:text-[10px] uppercase tracking-[1em]">YOUR LOVLY FRIEND - NIDUSHA</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        AOS.init({ once: true });
+
+        const swiper = new Swiper(".mySwiper", {
+            effect: "coverflow",
+            grabCursor: true,
+            centeredSlides: true,
+            slidesPerView: "auto",
+            loop: true,
+            speed: 1500,
+            autoplay: { delay: 2000, disableOnInteraction: false },
+            coverflowEffect: { rotate: 15, stretch: 0, depth: 200, modifier: 1, slideShadows: true },
+            observer: true,
+            observeParents: true,
+        });
+
+        const targetDate = new Date('May 15, 2026 00:00:00').getTime();
+
+        function update() {
+            const now = new Date().getTime();
+            const diff = targetDate - now;
+
+            if (diff <= 0) {
+                const ls = document.getElementById('lock-screen');
+                const mc = document.getElementById('main-content');
+                ls.style.transition = "opacity 2s ease, transform 2s ease";
+                ls.style.opacity = "0";
+                ls.style.transform = "scale(0.9)";
+                setTimeout(() => {
+                    ls.classList.add('hidden');
+                    mc.classList.add('visible'); 
+                    setTimeout(() => { AOS.refresh(); swiper.update(); }, 200);
+                }, 2000);
+                return;
+            }
+
+            const h = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const m = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const s = Math.floor((diff % (1000 * 60)) / 1000);
+            document.getElementById('countdown').innerHTML = 
+                `${h.toString().padStart(2, '0')}:${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+        }
+
+        setInterval(update, 1000);
+        update();
+    </script>
+</body>
+</html>
