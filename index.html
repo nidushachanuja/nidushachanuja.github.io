@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For Her Birthday </title>
+    <title>For Her Birthday</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -88,10 +88,51 @@
         @media (max-width: 640px) {
             .hero-title { font-size: 5rem !important; }
         }
+
+        /* Password Shake Animation */
+        @keyframes shake {
+            0%, 100% { transform: translateX(0); }
+            20%, 60% { transform: translateX(-8px); }
+            40%, 80% { transform: translateX(8px); }
+        }
+        .shake { animation: shake 0.4s ease-in-out; }
     </style>
 </head>
 <body class="grain">
 
+    <!-- PASSWORD SCREEN -->
+    <div id="password-screen" class="fixed inset-0 min-h-screen flex flex-col items-center justify-center p-6 text-center z-50 bg-[#0a0c10] transition-all duration-1000">
+        <!-- Ambient Gold Glow Background -->
+        <div class="absolute w-80 h-80 bg-[#c5a367]/10 rounded-full blur-[120px] pointer-events-none"></div>
+
+        <div id="passCard" class="relative max-w-sm w-full p-8 md:p-10 border border-[#c5a367]/20 bg-black/40 backdrop-blur-2xl rounded-2xl shadow-[0_0_50px_rgba(197,163,103,0.08)] transition-transform" data-aos="zoom-in">
+            
+            <span class="text-[9px] uppercase tracking-[0.6em] text-gray-500 mb-3 block">Restricted Access</span>
+            
+            <h2 class="serif italic text-4xl text-gold mb-2">Verification Required</h2>
+            <p class="text-gray-400 text-xs font-light tracking-widest mb-8">Enter access code to proceed</p>
+
+            <div class="space-y-6">
+                <div class="relative">
+                    <input type="password" id="passInput" maxlength="4" placeholder="••••••" autofocus
+                        class="w-full text-center text-4xl tracking-[0.6em] bg-transparent border-b border-[#c5a367]/40 pb-3 text-[#c5a367] focus:outline-none focus:border-[#c5a367] transition-all font-mono placeholder:tracking-[0.4em] placeholder:text-gray-700">
+                </div>
+
+                <p id="errorMsg" class="text-xs text-rose-400 min-h-[18px] transition-all duration-300 font-light"></p>
+
+                <button onclick="checkPassword()"
+                    class="w-full py-3.5 border border-[#c5a367]/60 text-[#c5a367] font-light rounded-xl text-xs uppercase tracking-[0.3em] hover:bg-[#c5a367] hover:text-black transition-all duration-500 shadow-lg active:scale-95">
+                    Continue
+                </button>
+            </div>
+
+            <div class="mt-8 pt-6 border-t border-white/5">
+                <p class="text-[10px] text-gray-500 font-light tracking-wider">Authorized for Two People Only <span class="text-gray-400"></span> ✓</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- LOCK / COUNTDOWN SCREEN -->
     <div id="lock-screen" class="min-h-screen flex flex-col items-center justify-center p-6 text-center z-20 relative">
         <div data-aos="zoom-out" data-aos-duration="2000">
             <span class="text-[10px] uppercase tracking-[0.8em] text-gray-500 mb-6 block">The Wait is Over</span>
@@ -100,6 +141,7 @@
         </div>
     </div>
 
+    <!-- MAIN CONTENT -->
     <div id="main-content">
         <!-- Hero Section -->
         <section class="min-h-screen flex flex-col items-center justify-center relative px-6 overflow-hidden text-center">
@@ -198,6 +240,35 @@ And somehow, after all these years, you’re still the prettiest girl my eyes ha
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         AOS.init({ once: true });
+
+        // Password Checker Functionality
+        function checkPassword() {
+            const input = document.getElementById('passInput');
+            const errorMsg = document.getElementById('errorMsg');
+            const passCard = document.getElementById('passCard');
+            const passScreen = document.getElementById('password-screen');
+
+            if (input.value === '0516') {
+                errorMsg.textContent = '';
+                passScreen.style.opacity = '0';
+                passScreen.style.transform = 'scale(1.05)';
+                setTimeout(() => {
+                    passScreen.style.display = 'none';
+                }, 1000);
+            } else {
+                errorMsg.textContent = 'Authentication failed.';
+                passCard.classList.add('shake');
+                input.value = '';
+                setTimeout(() => passCard.classList.remove('shake'), 400);
+            }
+        }
+
+        // Enter key trigger for password
+        document.getElementById('passInput').addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                checkPassword();
+            }
+        });
 
         const swiper = new Swiper(".mySwiper", {
             effect: "coverflow",
